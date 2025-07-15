@@ -117,7 +117,7 @@ node
 
 ### 🔚 How to Exit REPL
 
-You can exit by typing: bash CopyEdit `.exit`
+You can exit by typing: `.exit`
 
 ```bash
 .exit
