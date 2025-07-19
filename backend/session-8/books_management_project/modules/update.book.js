@@ -2,18 +2,27 @@ const readBooks = require("./read.books");
 const saveBooks = require("./save.books");
 
 async function updateBook(id, title) {
-  const books = await readBooks();
-
-  let book = books.find((book) => {
-    return book.id === id;
-  });
-
   if (!title) {
-    console.log("Title is Missing");
+    console.log("❌ Title is missing.");
     return;
   }
+
+  const books = await readBooks();
+  const book = books.find((book) => book.id === Number(id));
+
+  if (!book) {
+    console.log("❌ Book not found. Invalid ID.");
+    return;
+  }
+
   book.title = title;
-  saveBooks(books);
+
+  try {
+    await saveBooks(books);  
+    console.log("✅ Book updated successfully.");
+  } catch (error) {
+    console.log(`❌ Error saving updated book: ${error.message}`);
+  }
 }
 
 module.exports = updateBook;
