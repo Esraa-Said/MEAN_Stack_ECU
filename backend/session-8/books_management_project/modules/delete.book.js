@@ -3,16 +3,21 @@ const saveBooks = require("./save.books");
 
 async function deleteBook(id) {
   const books = await readBooks();
-  let index = books.findIndex((book) => {
-    return book.id === id;
-  });
-  if(index === -1){
-    console.log("Invalid id Book not Found");
+  const index = books.findIndex((book) => book.id === id);
+
+  if (index === -1) {
+    console.log("❌ Invalid ID: Book not found.");
     return;
   }
-  books.splice(index, 1);
-  saveBooks(books);
-  console.log("Book deleted")
-}
-module.exports = deleteBook;
 
+  books.splice(index, 1);
+
+  try {
+    await saveBooks(books); 
+    console.log("✅ Book deleted.");
+  } catch (error) {
+    console.log(`❌ Error deleting book: ${error.message}`);
+  }
+}
+
+module.exports = deleteBook;
