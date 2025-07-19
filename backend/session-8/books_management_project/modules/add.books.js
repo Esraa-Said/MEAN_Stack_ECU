@@ -3,7 +3,7 @@ const saveBooks = require("./save.books");
 
 async function addBook(title, author, year) {
   if (!title || !author || !year) {
-    console.log("Invalid Book Data");
+    console.log("❌ Invalid Book Data");
     return;
   }
 
@@ -11,9 +11,10 @@ async function addBook(title, author, year) {
     const books = await readBooks();
     let book = { id: books.length + 1, title, author, year };
     books.push(book);
-    saveBooks(books);
+    await saveBooks(books); 
+    console.log("✅ Book added successfully.");
   } catch (error) {
-    console.log(`Error ${error}`);
+    console.log(`❌ Error: ${error.message}`);
   }
 }
 
