@@ -56,7 +56,6 @@ This is the **core principle** that separates REST from other styles. It means a
     * `GET`, `POST`, `PUT`, `DELETE`, `PATCH` 
 * **Representation**: Resources can be represented in JSON, XML, etc. 
 
-
 🛣️ 5. **Layered System**  
 * The API architecture can have **multiple layers** (security, load balancer, cache, server). 
 * The client does not know whether it is connected to the **actual server** or an **intermediate layer**.
