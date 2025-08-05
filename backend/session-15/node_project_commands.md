@@ -76,6 +76,7 @@ const app = express();
 
 app.use(express.json());
 
+
 mongoose.connect('your_mongodb_connection_string_here')
   .then(() => console.log('DB connected'))
   .catch(err => console.log(err));
