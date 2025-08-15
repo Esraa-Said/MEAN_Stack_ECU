@@ -8,7 +8,7 @@ const multerErrorHandler = require("../middleware/multer.error.handler");
 router
   .route("/signup")
   .post(upload.single("photo"), multerErrorHandler, userControllers.signup);
-router.route("/").get(userControllers.getAllUsers);
+
 router.route("/login").post(userControllers.login);
 
 router.post(
