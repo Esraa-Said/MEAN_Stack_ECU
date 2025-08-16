@@ -1,12 +1,15 @@
 const express = require("express");
 const path = require("path");
-
+const cors = require("cors");
 const movieRouter = require("./routes/movie.routes");
 const userRouter = require("./routes/user.routes");
-
 const connectDB = require("./config/db");
 
 const app = express();
+
+app.use(cors({
+  origin: "http://localhost:4200"
+}))
 
 require("dotenv").config();
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))

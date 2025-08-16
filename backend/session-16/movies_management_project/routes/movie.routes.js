@@ -8,7 +8,7 @@ const router = express.Router();
 router
   .route("/")
   .post(movieControllers.createMovie)
-  .get(userControllers.protectRoutes, movieControllers.getAllMovies);
+  .get( movieControllers.getAllMovies);
 router
   .route("/:id")
   .get(movieControllers.getMovieById)
