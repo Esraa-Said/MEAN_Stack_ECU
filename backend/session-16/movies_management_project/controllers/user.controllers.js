@@ -31,7 +31,7 @@ const signup = async (req, res) => {
 
     const user = await User.create({ name, password, email, photo });
 
-    const token = JWT.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = JWT.sign({ id: user._id , email: existingUser.email}, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
 
@@ -73,10 +73,11 @@ const login = async (req, res) => {
         .json({ status: "fail", message: "Wrong password" });
     }
 
-    const token = JWT.sign({ id: existingUser._id }, process.env.JWT_SECRET, {
+    existingUser.password = undefined;
+    const token = JWT.sign({ id: existingUser._id , email: existingUser.email}, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
-    res.status(200).json({ status: "success", token, message: "login" });
+    res.status(200).json({ status: "success", data: {user: existingUser}, token });
   } catch (error) {
     res.status(500).json({ status: "fail", message: error.message });
   }
