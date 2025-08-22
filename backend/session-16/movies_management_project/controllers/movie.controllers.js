@@ -27,7 +27,7 @@ const getAllMovies = async (req, res) => {
     // return empty if not specify the query string
     //const movies = await Movie.find().where("duration").equals(req.query.duration);
 
-    // pagination    
+    // pagination        
     const page = +req.query.page || 1;
     const limit = +req.query.limit || 5;
     const skip = (page - 1) * limit;

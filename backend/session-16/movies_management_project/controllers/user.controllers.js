@@ -127,7 +127,7 @@ const addMovieToFav = async (req, res) => {
 
     user.favMovies.push(movieId);
     await user.save();
-    res.status(200).json({ status: "success", message: "movie is added" });
+    res.status(200).json({ status: "success", data: {favMovies: user.favMovies} });
   } catch (error) {
     res.status(500).json({ status: "fail", message: error.message });
   }
